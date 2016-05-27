@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  resources :users, only: [:create]
+  
   namespace :api do
     namespace :v1 do
       resources :items, only: [:index, :show], defaults: {format: :json}
